@@ -23,7 +23,7 @@ class confluence:
 
     def save(self, *, dest_folder):
         self.__set_page_title()
-        self.title = self.format_title(self.title)
+        self.page.title = self.format_title(self.title)
         self.download_attachments() \
             .download_page_content()
         self.page.save(dest_folder=dest_folder)
@@ -62,4 +62,5 @@ class confluence:
         url = f'{self.base_url}/?expand=body.view'
         self.page.set_content(content=requests.get(url, auth=self.auth).json()['body']['view']['value'])
         return self
+
 
